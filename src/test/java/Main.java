@@ -58,7 +58,7 @@ public class Main
                 .ClickCreateTask()
                 .isOpenedCreateTask()
                 .PutSubjectCreateTask()
-         //     .PutDescriptionCreateTask() метод не реализован
+                .PutDescriptionCreateTask()
                 .ButtonCreateTask()
                 .ButtonTask();
 

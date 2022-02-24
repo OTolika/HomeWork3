@@ -1,10 +1,11 @@
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import static com.codeborne.selenide.Selenide.page;
+
+import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static com.codeborne.selenide.Selenide.sleep;
 
 public class MainPage
 {
@@ -25,6 +26,9 @@ public class MainPage
 
     @FindBy(how = How.XPATH, using =  "//*[@id='summary']")
     private SelenideElement subjectCreateTask;
+
+    @FindBy(how = How.XPATH, using =  "//*[@id='mce_0_ifr']")
+    private SelenideElement descriptionCreateTask;
 
     @FindBy(how = How.XPATH, using =  "//*[@id='create-issue-submit']")
     private SelenideElement buttonCreateTask;
@@ -67,7 +71,9 @@ public class MainPage
 
     public MainPage PutDescriptionCreateTask()
     {
-        // ???
+        Selenide.switchTo().frame(descriptionCreateTask);
+        $x("//*[@id='tinymce']").sendKeys("Hello World");
+        Selenide.switchTo().parentFrame();
         return page(MainPage.class);
     }
 
