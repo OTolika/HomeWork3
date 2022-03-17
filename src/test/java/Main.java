@@ -1,6 +1,10 @@
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Allure;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -19,11 +23,31 @@ public class Main
         WebDriverRunner.setWebDriver(driverChrome);
     }
 
+    @BeforeAll
+    public static void allureSubThreadParallel()
+    {
+        String listenerName = "AllureSelenide";
+        if (!(SelenideLogger.hasListener(listenerName)))
+        {
+            SelenideLogger.addListener(listenerName, new AllureSelenide(Allure.getLifecycle()));
+        }
+        new AllureSelenide()
+                .screenshots(true)
+                .savePageSource(false);
+    }
+
+    @AfterEach
+    public void allureAfterTest()
+    {
+        new AllureHelper().afterTestExecution();
+    }
+
     @AfterAll
     static void EndOfTest()
     {
         closeWebDriver();
     }
+
 
    @Test
     public void Test1()

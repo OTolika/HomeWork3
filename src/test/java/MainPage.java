@@ -58,7 +58,7 @@ public class MainPage
 
     public MainPage isOpenedCreateTask()
     {
-        sleep(1000);
+        sleep(5000);
         assertEquals(true, headerCreateTask.exists());
         return page(MainPage.class);
     }

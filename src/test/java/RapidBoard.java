@@ -1,4 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,19 +23,20 @@ public class RapidBoard
     @FindBy(how = How.XPATH, using =  "//*[contains(@class, 'js-issue-list')]")
     private SelenideElement issueList;
 
+    @Step("Проверка открытия страницы Список задач")
     public RapidBoard isOpened()
     {
         sleep(1000);
         assertEquals(true, header.exists());
         return page(RapidBoard.class);
     }
-
+    @Step("Переход на отображение Список задач")
     public RapidBoard ClickButtonTaskList()
     {
         taskList.click();
         return page(RapidBoard.class);
     }
-
+    @Step("Взятие количества задач из текста")
     public int TextIssueCount()
     {
         String s = issueCount.getText();
@@ -42,13 +44,13 @@ public class RapidBoard
         int count = Integer.parseInt(s.substring(0, a));
         return count;
     }
-
+    @Step("Взятие количества элементов в списке задач")
     public int ListIssueCount()
     {
         List<WebElement> e = issueList.findElements(By.className("js-issue"));
         return e.size();
     }
-
+    @Step("Проверка соответствия количества задач из текста и в списке")
     public RapidBoard EqualTextIssueCountToListIssueCount()
     {
         int t = TextIssueCount();
