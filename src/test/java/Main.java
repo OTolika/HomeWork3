@@ -3,10 +3,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -29,11 +26,11 @@ public class Main
         String listenerName = "AllureSelenide";
         if (!(SelenideLogger.hasListener(listenerName)))
         {
-            SelenideLogger.addListener(listenerName, new AllureSelenide(Allure.getLifecycle()));
+            SelenideLogger.addListener(listenerName, new AllureSelenide()
+                    .screenshots(true)
+                    .savePageSource(false));
         }
-        new AllureSelenide()
-                .screenshots(true)
-                .savePageSource(false);
+
     }
 
     @AfterEach
@@ -48,7 +45,7 @@ public class Main
         closeWebDriver();
     }
 
-
+   @DisplayName("Тест сравнения количества задач из текста и в списке")
    @Test
     public void Test1()
     {
@@ -69,6 +66,7 @@ public class Main
         System.out.println("First test passed");
     }
 
+    @DisplayName("Тест на создние задачи и выполнения ее")
     @Test
     public void Test2()
     {
