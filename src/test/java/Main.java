@@ -1,7 +1,6 @@
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Allure;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -62,8 +61,6 @@ public class Main
                 .isOpened()
                 .ClickButtonTaskList()
                 .EqualTextIssueCountToListIssueCount();
-
-        System.out.println("First test passed");
     }
 
     @DisplayName("Тест на создние задачи и выполнения ее")
@@ -92,6 +89,5 @@ public class Main
                 .ButtonBuisnessProcess()
                 .ButtonDone()
                 .ReadyTask();
-        System.out.println("Second test passed");
     }
 }

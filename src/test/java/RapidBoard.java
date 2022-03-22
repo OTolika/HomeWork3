@@ -55,8 +55,6 @@ public class RapidBoard
     {
         int t = TextIssueCount();
         int l = ListIssueCount();
-        System.out.println("TextIssueCount = " + t);
-        System.out.println("ListIssueCount = " + l);
         assertEquals(t, l);
         return page(RapidBoard.class);
     }

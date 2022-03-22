@@ -58,7 +58,6 @@ public class TaskPage
         sleep(1000);
         String readyText = ready.getText();
         assertEquals("ГОТОВО" , readyText);
-        System.out.println("Task is done");
         return page(TaskPage.class);
     }
 
