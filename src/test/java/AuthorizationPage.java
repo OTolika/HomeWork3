@@ -3,11 +3,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import static com.codeborne.selenide.Selenide.page;
 import io.qameta.allure.Step;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
-public class AuthorizationPage
+public class AuthorizationPage extends PropertiesReader
 {
-    String login = "tolOksana";
-    String password = "123qaz!@#QAZ";
+    String login;
+    String password;
 
     @FindBy (how = How.XPATH, using =  "//*[@id='login-form-username']")
     private SelenideElement loginLine;
@@ -17,6 +20,12 @@ public class AuthorizationPage
 
     @FindBy (how = How.XPATH, using =  "//*[@id='login-form-submit']")
     private SelenideElement buttonLogin;
+
+    AuthorizationPage()
+    {
+            login = getProperty("login");
+            password = getProperty("password");
+    }
 
     @Step("Ввод логина {login}")
     public AuthorizationPage DoClickButtonLogin(String login)

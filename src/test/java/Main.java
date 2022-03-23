@@ -7,8 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-public class Main
+public class Main extends PropertiesReader
 {
+    String url;
+    Main()
+    {
+        url = getProperty("url");
+    }
+
     @BeforeAll
     static void StartOfTest()
     {
@@ -48,16 +54,16 @@ public class Main
    @Test
     public void Test1()
     {
-        Selenide.open("https://edujira.ifellow.ru/login.jsp?", AuthorizationPage.class)
+        Selenide.open(url + "login.jsp?", AuthorizationPage.class)
                 .ClickButtonLogin()
                 .ClickButtonPassword()
                 .ClickButtonSubmit();
 
-        Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa?", MainPage.class)
+        Selenide.open(url + "secure/Dashboard.jspa?", MainPage.class)
                 .isOpened()
                 .openAllOpenIssue();
 
-        Selenide.open("https://edujira.ifellow.ru/secure/RapidBoard.jspa?", RapidBoard.class)
+        Selenide.open(url + "secure/RapidBoard.jspa?", RapidBoard.class)
                 .isOpened()
                 .ClickButtonTaskList()
                 .EqualTextIssueCountToListIssueCount();
@@ -67,12 +73,12 @@ public class Main
     @Test
     public void Test2()
     {
-        Selenide.open("https://edujira.ifellow.ru/login.jsp?", AuthorizationPage.class)
+        Selenide.open(url + "login.jsp?", AuthorizationPage.class)
                 .ClickButtonLogin()
                 .ClickButtonPassword()
                 .ClickButtonSubmit();
 
-        Selenide.open("https://edujira.ifellow.ru/secure/Dashboard.jspa?", MainPage.class)
+        Selenide.open(url + "secure/Dashboard.jspa?", MainPage.class)
                 .isOpened()
                 .ClickCreateTask()
                 .isOpenedCreateTask()
