@@ -13,12 +13,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class Hooks extends PropertiesReader
 {
-        String url;
-        Hooks()
-        {
-            url = getProperty("url");
-        }
-
         @BeforeAll
         static void StartOfTest()
         {
