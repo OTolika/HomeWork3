@@ -1,11 +1,11 @@
+package pageObject;
+
 import com.codeborne.selenide.SelenideElement;
+import hooks.PropertiesReader;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import static com.codeborne.selenide.Selenide.page;
 import io.qameta.allure.Step;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class AuthorizationPage extends PropertiesReader
 {

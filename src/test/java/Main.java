@@ -1,10 +1,17 @@
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import hooks.AllureHelper;
+import hooks.PropertiesReader;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pageObject.AuthorizationPage;
+import pageObject.MainPage;
+import pageObject.RapidBoard;
+import pageObject.TaskPage;
+
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class Main extends PropertiesReader

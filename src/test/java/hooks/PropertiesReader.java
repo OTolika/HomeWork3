@@ -1,3 +1,7 @@
+package hooks;
+
+import pageObject.AuthorizationPage;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -5,11 +9,11 @@ import java.util.Properties;
 public class PropertiesReader
 {
     Properties prop;
-    String  getProperty (String name)
+    public String getProperty (String name)
     {
         return prop.getProperty(name);
     }
-    PropertiesReader()
+    public PropertiesReader()
     {
         try (InputStream input = AuthorizationPage.class.getClassLoader().getResourceAsStream("application.properties"))
         {

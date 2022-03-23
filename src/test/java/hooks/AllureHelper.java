@@ -1,3 +1,5 @@
+package hooks;
+
 import com.codeborne.selenide.WebDriverRunner;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.NoSuchSessionException;
